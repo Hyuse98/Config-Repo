@@ -1,3 +1,6 @@
+server:
+  port: ${BACKEND_SERVER_PORT}
+
 spring:
   datasource:
     driverClassName: ${SPRING_DATASOURCE_DRIVER_CLASS_NAME}
