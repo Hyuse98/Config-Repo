@@ -39,7 +39,19 @@ management:
   endpoints:
     web:
       exposure:
-        include: health
+        include: health,info,metrics,prometheus
   health:
+    show-details: always
     probes:
       enabled: true
+  info:
+    env:
+      enabled: true
+  tracing:
+    sampling:
+      probability: 1.0
+    propagation:
+      type: b3
+    zipkin:
+      tracing:
+        endpoint: http://zipkin:9411/api/v2/spans
