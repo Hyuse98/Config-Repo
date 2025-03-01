@@ -1,7 +1,12 @@
 server:
   port: ${BACKEND_SERVER_PORT}
+  forward-headers-strategy: framework
 
 spring:
+
+  hateoas:
+    use-hal-as-default-json-media-type: false
+
   datasource:
     driverClassName: ${SPRING_DATASOURCE_DRIVER_CLASS_NAME}
     url: ${SPRING_DATASOURCE_URL}
