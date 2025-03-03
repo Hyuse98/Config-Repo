@@ -65,3 +65,7 @@ management:
     zipkin:
       tracing:
         endpoint: http://zipkin-service:9411/api/v2/spans
+
+logging:
+  level:
+    org.springframework: DEBUG
