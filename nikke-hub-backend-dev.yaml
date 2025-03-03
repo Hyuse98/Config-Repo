@@ -64,4 +64,4 @@ management:
       type: b3
     zipkin:
       tracing:
-        endpoint: http://zipkin:9411/api/v2/spans
+        endpoint: http://zipkin-service:9411/api/v2/spans
