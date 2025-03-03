@@ -4,7 +4,7 @@ server:
 
 spring:
   zipkin:
-    base-url: http://zipkin-service:9411
+    base-url: http://zipkin-service.default.svc.cluster.local:9411
     sender:
       type: web
     enabled: true
@@ -64,8 +64,4 @@ management:
       type: b3
     zipkin:
       tracing:
-        endpoint: http://zipkin-service:9411/api/v2/spans
-
-logging:
-  level:
-    org.springframework: DEBUG
+        endpoint: http://zipkin-service.default.svc.cluster.local:9411/api/v2/spans
