@@ -49,22 +49,22 @@ management:
   endpoints:
     web:
       exposure:
-        include: health,info,metrics,prometheus
+        include: health #,info,metrics,prometheus
   health:
     show-details: always
     probes:
       enabled: true
-  info:
-    env:
-      enabled: true
-  tracing:
-    sampling:
-      probability: 1.0
-    propagation:
-      type: b3
-    enabled: ${MANAGEMENT_TRACING_ENABLED}
-    zipkin:
-      tracing:
-        endpoint: ${MANAGEMENT_TRACING_ZIPKIN_TRACING_ENDPOINT}
-      connect-timeout: 5s
-      read-timeout: 5s
+  #info:
+    #env:
+      #enabled: true
+  #tracing:
+    #sampling:
+      #probability: 1.0
+    #propagation:
+      #type: b3
+    #enabled: ${MANAGEMENT_TRACING_ENABLED}
+    #zipkin:
+      #tracing:
+        #endpoint: ${MANAGEMENT_TRACING_ZIPKIN_TRACING_ENDPOINT}
+      #connect-timeout: 5s
+      #read-timeout: 5s
