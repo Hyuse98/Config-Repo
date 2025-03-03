@@ -2,12 +2,12 @@ server:
   port: ${BACKEND_SERVER_PORT}
   forward-headers-strategy: framework
 
-spring:
-  zipkin:
-    base-url: http://zipkin-service:9411
-    sender:
-      type: web
-    enabled: true
+#spring:
+  #zipkin:
+    #base-url: ${ZIPKIN_BASE_URL} #http://zipkin-service:9411
+    #sender:
+      #type: ${SPRING_ZIPKIN_SENDER_TYPE}
+    #enabled: ${SPRING_ZIPKIN_ENABLED}
 
   hateoas:
     use-hal-as-default-json-media-type: false
@@ -62,9 +62,9 @@ management:
       probability: 1.0
     propagation:
       type: b3
-    enabled: true
+    enabled: ${MANAGEMENT_TRACING_ENABLED}
     zipkin:
       tracing:
-        endpoint: http://zipkin-service:9411/api/v2/spans
+        endpoint: ${MANAGEMENT_TRACING_ZIPKIN_TRACING_ENDPOINT}
       connect-timeout: 5s
       read-timeout: 5s
