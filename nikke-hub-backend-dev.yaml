@@ -4,17 +4,17 @@ server:
 
 spring:
   zipkin:
-    base-url: ${ZIPKIN_BASE_URL} # http://zipkin-service:9411
+    base-url: ${ZIPKIN_BASE_URL}
     sender:
       type: ${SPRING_ZIPKIN_SENDER_TYPE}
-    #enabled: ${SPRING_ZIPKIN_ENABLED}
-#  sleuth:
-#    sampler:
-#      probability: 1.0
-#  metrics:
-#    export:
-#      simple:
-#        enabled: true
+    enabled: ${SPRING_ZIPKIN_ENABLED}
+  sleuth:
+    sampler:
+      probability: 1.0
+  metrics:
+    export:
+      simple:
+        enabled: true
 
   hateoas:
     use-hal-as-default-json-media-type: false
@@ -67,12 +67,12 @@ management:
   tracing:
     sampling:
       probability: 1.0
-#    export:
-#      zipkin:
-#        endpoint: http://zipkin-service:9411/api/v2/spans
-#    propagation:
-#      type: b3
-#    enabled: ${MANAGEMENT_TRACING_ENABLED}
-#    zipkin:
-#      tracing:
-#        endpoint: ${MANAGEMENT_TRACING_ZIPKIN_TRACING_ENDPOINT}
+    export:
+      zipkin:
+        endpoint: ${ZIPKIN_BASE_URL}:9411/api/v2/spans
+    propagation:
+      type: b3
+    enabled: ${MANAGEMENT_TRACING_ENABLED}
+    zipkin:
+      tracing:
+        endpoint: ${MANAGEMENT_TRACING_ZIPKIN_TRACING_ENDPOINT}
