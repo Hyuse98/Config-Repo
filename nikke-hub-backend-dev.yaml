@@ -4,10 +4,10 @@ server:
 
 spring:
 
-  #zipkin:
-    #base-url: ${ZIPKIN_BASE_URL} #http://zipkin-service:9411
-    #sender:
-      #type: ${SPRING_ZIPKIN_SENDER_TYPE}
+  zipkin:
+    base-url: ${ZIPKIN_BASE_URL} #http://zipkin-service:9411
+    sender:
+      type: ${SPRING_ZIPKIN_SENDER_TYPE}
     #enabled: ${SPRING_ZIPKIN_ENABLED}
 
   hateoas:
@@ -50,7 +50,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: health #,info,metrics,prometheus
+        include: health,info,metrics,prometheus
   health:
     show-details: always
     probes:
@@ -58,9 +58,9 @@ management:
   #info:
     #env:
       #enabled: true
-  #tracing:
-    #sampling:
-      #probability: 1.0
+  tracing:
+    sampling:
+      probability: 1.0
     #propagation:
       #type: b3
     #enabled: ${MANAGEMENT_TRACING_ENABLED}
