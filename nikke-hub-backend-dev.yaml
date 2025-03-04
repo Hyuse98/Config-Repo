@@ -8,6 +8,9 @@ spring:
     sender:
       type: ${SPRING_ZIPKIN_SENDER_TYPE}
     #enabled: ${SPRING_ZIPKIN_ENABLED}
+  sleuth:
+    sampler:
+      probability: 1.0
   metrics:
     export:
       simple:
