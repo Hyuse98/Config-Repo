@@ -58,12 +58,15 @@ management:
     show-details: always
     probes:
       enabled: true
-  #info:
-    #env:
-      #enabled: true
+  info:
+    env:
+      enabled: true
   tracing:
     sampling:
       probability: 1.0
+    export:
+      zipkin:
+        endpoint: http://zipkin-service:9411/api/v2/spans
     #propagation:
       #type: b3
     #enabled: ${MANAGEMENT_TRACING_ENABLED}
