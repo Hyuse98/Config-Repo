@@ -3,18 +3,18 @@ server:
   forward-headers-strategy: framework
 
 spring:
-  zipkin:
-    base-url: http://zipkin-service:9411 #${ZIPKIN_BASE_URL}
-    sender:
-      type: ${SPRING_ZIPKIN_SENDER_TYPE}
-    #enabled: ${SPRING_ZIPKIN_ENABLED}
-  sleuth:
-    sampler:
-      probability: 1.0
-  metrics:
-    export:
-      simple:
-        enabled: true
+#  zipkin:
+#    base-url: http://zipkin-service:9411 #${ZIPKIN_BASE_URL}
+#    sender:
+#      type: ${SPRING_ZIPKIN_SENDER_TYPE}
+#    #enabled: ${SPRING_ZIPKIN_ENABLED}
+#  sleuth:
+#    sampler:
+#      probability: 1.0
+#  metrics:
+#    export:
+#      simple:
+#        enabled: true
 
   hateoas:
     use-hal-as-default-json-media-type: false
@@ -70,11 +70,9 @@ management:
     export:
       zipkin:
         endpoint: http://zipkin-service:9411/api/v2/spans
-    #propagation:
-      #type: b3
-    #enabled: ${MANAGEMENT_TRACING_ENABLED}
-    #zipkin:
-      #tracing:
-        #endpoint: ${MANAGEMENT_TRACING_ZIPKIN_TRACING_ENDPOINT}
-      #connect-timeout: 5s
-      #read-timeout: 5s
+    propagation:
+      type: b3
+    enabled: ${MANAGEMENT_TRACING_ENABLED}
+    zipkin:
+      tracing:
+        endpoint: ${MANAGEMENT_TRACING_ZIPKIN_TRACING_ENDPOINT}
