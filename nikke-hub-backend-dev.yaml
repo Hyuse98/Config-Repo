@@ -4,7 +4,7 @@ server:
 
 spring:
   zipkin:
-    base-url: ${ZIPKIN_BASE_URL} #http://zipkin-service:9411
+    base-url: http://zipkin-service:9411 #${ZIPKIN_BASE_URL}
     sender:
       type: ${SPRING_ZIPKIN_SENDER_TYPE}
     #enabled: ${SPRING_ZIPKIN_ENABLED}
