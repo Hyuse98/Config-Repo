@@ -1,23 +1,15 @@
 server:
-  port: ${BACKEND_SERVER_PORT}
-  forward-headers-strategy: framework
+  port: ${SERVER_PORT}
+  forward-headers-strategy: ${SERVER_HEADERS_STRATEGY}
 
 spring:
-#  zipkin:
-#    base-url: http://zipkin:9411
-#    sender:
-#      type: web
-#    enabled: true
-
   hateoas:
-    use-hal-as-default-json-media-type: false
-
+    use-hal-as-default-json-media-type: ${SPRING_HATEOAS_HAL_MEDIA_TYPE_ENABLED}
   datasource:
     driverClassName: ${SPRING_DATASOURCE_DRIVER_CLASS_NAME}
     url: ${SPRING_DATASOURCE_URL}
     username: ${SPRING_DATASOURCE_USERNAME}
     password: ${SPRING_DATASOURCE_PASSWORD}
-
   jpa:
     generate-ddl: ${SPRING_JPA_GENERATE_DDL}
     hibernate:
@@ -26,42 +18,67 @@ spring:
       hibernate:
         dialect: ${SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT}
         transaction:
-          coordinator_class: jdbc
+          coordinator_class: ${SPRING_SPA_PROPERTIES_HIBERNATED_CLASS}
     sql:
       init:
-        mode: never
-
+        mode: ${JPA_SQL_INIT_MODE}
   flyway:
     enabled: ${SPRING_FLYWAY_ENABLED}
     baseline-on-migrate: ${SPRING_FLYWAY_BASELINE_ON_MIGRATE}
     baseline-version: ${SPRING_FLYWAY_BASELINE_VERSION}
     user: ${SPRING_FLYWAY_USER}
     password: ${SPRING_FLYWAY_PASSWORD}
-
   cache:
-    type: redis
+    type: ${SPRING_CACHE_TYPE}
   data:
     redis:
       host: ${SPRING_REDIS_HOST}
       port: ${SPRING_REDIS_PORT}
 
-#management:
-#  endpoints:
-#    web:
-#      exposure:
-#        include: health,info,metrics,prometheus
-#  health:
-#    show-details: always
-#    probes:
-#      enabled: true
-#  info:
-#    env:
-#      enabled: true
-#  tracing:
-#    sampling:
-#      probability: 1.0
-#    propagation:
-#      type: b3
-#    zipkin:
-#      tracing:
-#        endpoint: http://zipkin:9411/api/v2/spans
+management:
+  tracing:
+    sampling:
+      probability: ${MANAGEMENT_TRACING_SAMPLING_PROBABILITY}
+    enabled: ${MANAGEMENT_TRACING_ENABLED}
+    propagation:
+      type: ${MANAGEMENT_TRACING_PROPAGATION_TYPE}
+    otel:
+      exporter:
+        otlp:
+          endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT}
+          compression: ${OTEL_EXPORTER_OTLP_COMPRESSION}
+    endpoints:
+      web:
+        exposure:
+          include: ${ENDPOINTS_WEB_EXPOSURE}
+    health:
+      show-details: ${HEALTH_DETAILS}
+      probes:
+        enabled: ${HEALTH_PROBES_ENABLED}
+    info:
+      env:
+        enabled: ${INFO_ENV_ENABLED}
+    metrics:
+      enable:
+        all: ${METRICS_ENABLED_TYPE_ALL}
+      export:
+        prometheus:
+          enabled: ${EXPORT_PROMETHEUS_ENABLED}
+        otlp:
+          enabled: ${MANAGEMENT_METRICS_ENABLED}
+    otlp:
+      metrics:
+        export:
+          protocol: ${OTPL_METRICS_EXPORT_PROTOCOL}
+          url: ${OTPL_METRICS_EXPORT_URL}
+  otel:
+    logs:
+      exporter: ${OTEL_LOGS_EXPORTER}
+    metrics:
+      exporter: ${OTEL_METRICS_EXPORTER}
+    traces:
+      exporter: ${OTEL_TRACES_EXPORTER}
+    exporter:
+      otlp:
+        endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT}
+        protocol: ${OTEL_EXPORTER_PROTOCOL}
