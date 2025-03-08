@@ -35,50 +35,50 @@ spring:
       host: ${SPRING_REDIS_HOST}
       port: ${SPRING_REDIS_PORT}
 
-#management:
-#  tracing:
-#    sampling:
-#      probability: ${MANAGEMENT_TRACING_SAMPLING_PROBABILITY}
-#    enabled: ${MANAGEMENT_TRACING_ENABLED}
-#    propagation:
-#      type: ${MANAGEMENT_TRACING_PROPAGATION_TYPE}
-#    otel:
-#      exporter:
-#        otlp:
-#          endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT}
-#          compression: ${OTEL_EXPORTER_OTLP_COMPRESSION}
-#    endpoints:
-#      web:
-#        exposure:
-#          include: ${ENDPOINTS_WEB_EXPOSURE}
-#    health:
-#      show-details: ${HEALTH_DETAILS}
-#      probes:
-#        enabled: ${HEALTH_PROBES_ENABLED}
-#    info:
-#      env:
-#        enabled: ${INFO_ENV_ENABLED}
-#    metrics:
-#      enable:
-#        all: ${METRICS_ENABLED_TYPE_ALL}
-#      export:
-#        prometheus:
-#          enabled: ${EXPORT_PROMETHEUS_ENABLED}
-#        otlp:
-#          enabled: ${MANAGEMENT_METRICS_ENABLED}
-#    otlp:
-#      metrics:
-#        export:
-#          protocol: ${OTPL_METRICS_EXPORT_PROTOCOL}
-#          url: ${OTPL_METRICS_EXPORT_URL}
-#  otel:
-#    logs:
-#      exporter: ${OTEL_LOGS_EXPORTER}
-#    metrics:
-#      exporter: ${OTEL_METRICS_EXPORTER}
-#    traces:
-#      exporter: ${OTEL_TRACES_EXPORTER}
-#    exporter:
-#      otlp:
-#        endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT}
-#        protocol: ${OTEL_EXPORTER_PROTOCOL}
+management:
+  tracing:
+    sampling:
+      probability: ${MANAGEMENT_TRACING_SAMPLING}
+    enabled: ${MANAGEMENT_TRACING_ENABLED}
+    propagation:
+      type: ${MANAGEMENT_TRACING_PROPAGATION}
+    otel:
+      exporter:
+        otlp:
+          endpoint: ${MANAGEMENT_TRACING_OTEL_EXPORT_ENDPOINT}
+          compression: ${MANAGEMENT_TRACING_OTEL_EXPORT_COMPRESSION}
+  endpoints:
+    web:
+      exposure:
+        include: ${MANAGEMENT_ENDPOINTS_WEB_EXPOSURE}
+  health:
+    show-details: ${MANAGEMENT_HEALTH_SHOW_DETAILS}
+    probes:
+      enabled: ${MANAGEMENT_HEALTH_PROBES_ENABLED}
+  info:
+    env:
+      enabled: ${MANAGEMENT_INFO_ENV_ENABLED}
+  metrics:
+    enable:
+      all: ${MANAGEMENT_METRICS_ENABLE_ALL}
+    export:
+      prometheus:
+        enabled: ${MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLE}
+      otlp:
+        enabled: ${MANAGEMENT_METRICS_OTPL_ENABLED}
+  otlp:
+    metrics:
+      export:
+        protocol: ${MANAGEMENT_OTPL_METRICS_EXPORT_PROTOCOL}
+        url: ${MANAGEMENT_OTPL_METRICS_EXPORT_URL}
+otel:
+  logs:
+    exporter: ${OTEL_LOGS_EXPORTER}
+  metrics:
+    exporter: ${OTEL_METRICS_EXPORTER}
+  traces:
+    exporter: ${OTEL_TRACES_EXPORTER}
+  exporter:
+    otlp:
+      endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT}
+      protocol: ${OTEL_EXPORTER_OTLP_PROTOCOL}
